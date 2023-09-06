@@ -1,8 +1,14 @@
 import {authors, genres, books} from "./data.js";
 // page = 1;
 
-if (!books && !Array.isArray(books)) throw new Error('Source required') 
-if (!range && range.length < 2) throw new Error('Range must be an array with two numbers')
+let range = books.length
+
+ if (!books || !Array.isArray(books)) {
+   throw new Error('Source required');
+};
+if (!range || range.length < 2) {
+  throw new Error('Range must be an array with two numbers');
+};
 
 const day = {
     dark: '10, 10, 20',
