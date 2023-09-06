@@ -26,18 +26,41 @@ const night = {
 const createPreviewsFragment = document.createDocumentFragment()
 let beginPreview = 0;
 let endPreview = 36;
-const numOfPreviews = books.slice(beginPreview, endPreview);
+const numberOfPreviews = books.slice(beginPreview, endPreview);
 
-for ({ authors, image, title, id }; extracted; i++) {
-    const preview = createPreview({
-        author,
-        id,
-        image,
-        title
-    })
+// for ({ authors, image, title, id }; extracted; i++) {
+//     const preview = createPreview({
+//         author,
+//         id,
+//         image,
+//         title
+//     })
 
-    fragment.appendChild(preview)
-}
+//     fragment.appendChild(preview)
+// }
+//Loop through the extracted previews and append them to the fragment
+ for (let i = 0; i < numberOfPreviews.length; i++) {
+      const preview = document.createElement('dl')
+      preview.className = 'preview'
+      preview.dataset.id = books[i].id
+      preview.dataset.title = books[i].title
+      preview.dataset.image = books[i].image
+      preview.dataset.subtitle = `${authors[books[i].author]} (${(new Date(books[i].published)).getFullYear()})`
+      preview.dataset.description = books[i].description
+      preview.dataset.genre = books[i].genres
+      preview.innerHTML= /*html*/`
+      <div>
+      <image class='preview__image' src="${books[i].image}" alt="book pic"}/>
+      </div>
+      <div class='preview__info'>
+      <dt class='preview__title'>${books[i].title}<dt>
+      <dt class='preview__author'> By ${authors[books[i].author]}</dt>
+      </div>`
+      fragment.appendChild(preview)
+  }
+  const booklist1 = document.querySelector('[data-list-items]')
+  booklist1.appendChild(fragment)
+  
 
 data-list-items.appendChild(docFragment)
 
@@ -126,9 +149,9 @@ data-search-form.click(filters) {
 
     data-list-items.innerHTML = ''
     const fragment = document.createDocumentFragment()
-    const extracted = source.slice(range[0], range[1])
+    const extranumberOfPreviewscted = source.slice(range[0], range[1])
 
-    for ({ author, image, title, id }; extracted; i++) {
+    for ({ author, image, title, id }; numberOfPreviews; i++) {
         const { author: authorId, id, image, title } = props
 
         element = document.createElement('button')
