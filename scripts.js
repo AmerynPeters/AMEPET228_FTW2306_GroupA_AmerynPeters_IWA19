@@ -1,9 +1,9 @@
 import {authors, genres, books} from "./data.js";
 // page = 1;
 
-let range = books.length
+let range = books.length;
 
- if (!books || !Array.isArray(books)) {
+if (!books || !Array.isArray(books)) {
    throw new Error('Source required');
 };
 if (!range || range.length < 2) {
@@ -20,10 +20,15 @@ const night = {
     light: '10, 10, 20',
 };
 
-fragment = document.createDocumentFragment()
-const extracted = books.slice(0, 36)
+// const fragment = document.createDocumentFragment()
+// const extracted = books.slice(0, 36)
 
-for ({ author, image, title, id }; extracted; i++) {
+const createPreviewsFragment = document.createDocumentFragment()
+let beginPreview = 0;
+let endPreview = 36;
+const numOfPreviews = books.slice(beginPreview, endPreview);
+
+for ({ authors, image, title, id }; extracted; i++) {
     const preview = createPreview({
         author,
         id,
@@ -34,7 +39,7 @@ for ({ author, image, title, id }; extracted; i++) {
     fragment.appendChild(preview)
 }
 
-data-list-items.appendChild(fragment)
+data-list-items.appendChild(docFragment)
 
 genres = document.createDocumentFragment()
 element = document.createElement('option')
