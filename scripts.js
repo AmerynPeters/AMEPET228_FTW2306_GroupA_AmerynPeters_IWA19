@@ -38,10 +38,11 @@ const numberOfPreviews = books.slice(beginPreview, endPreview);
 
 //     fragment.appendChild(preview)
 // }
+
 //Loop through the extracted previews and append them to the fragment
  for (let i = 0; i < numberOfPreviews.length; i++) {
       const preview = document.createElement('dl')
-      preview.className = 'preview'
+      preview.className = 'previews'
       preview.dataset.id = books[i].id
       preview.dataset.title = books[i].title
       preview.dataset.image = books[i].image
