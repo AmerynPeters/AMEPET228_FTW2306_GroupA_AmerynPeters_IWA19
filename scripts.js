@@ -209,6 +209,15 @@ for (const [genreId, genreName] of Object.entries(genres)) {
   const showMoreButtonText = `Show More <span style="opacity: 0.5">(${numItemsToShow})</span>`
   showMoreButton.innerHTML = showMoreButtonText
   showMoreButton.addEventListener('click', () => )
+
+ //reassigned the vars
+ beginPreview += 36;
+ endPreview += 36;
+ const startIndex1 = beginPreview
+ const endIndex1 = endPreview
+
+  
+
 //     for (book; booksList; i++) {
 //         titleMatch = filters.title.trim() = '' && book.title.toLowerCase().includes[filters.title.toLowerCase()]
 //         authorMatch = filters.author = 'any' || book.author === filters.author
