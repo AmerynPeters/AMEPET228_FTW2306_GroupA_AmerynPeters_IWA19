@@ -105,24 +105,46 @@ for (const [genreId, genreName] of Object.entries(genres)) {
   genreSelect.appendChild(optionElement)
 }
 
-data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'
-v = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches? 'night' | 'day'
+// data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'
+// v = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches? 'night' | 'day'
 
-documentElement.style.setProperty('--color-dark', css[v].dark);
-documentElement.style.setProperty('--color-light', css[v].light);
-data-list-button = "Show more (books.length - BOOKS_PER_PAGE)"
+// documentElement.style.setProperty('--color-dark', css[v].dark);
+// documentElement.style.setProperty('--color-light', css[v].light);
+// data-list-button = "Show more (books.length - BOOKS_PER_PAGE)"
 
-data-list-button.disabled = !(matches.length - [page * BOOKS_PER_PAGE] > 0)
+// data-list-button.disabled =!(matches.length - [page * BOOKS_PER_PAGE] > 0)
 
-data-list-button.innerHTML = /* html */ [
-    '<span>Show more</span>',
-    '<span class="list__remaining"> (${matches.length - [page * BOOKS_PER_PAGE] > 0 ? matches.length - [page * BOOKS_PER_PAGE] : 0})</span>',
-]
+// data-list-button.innerHTML = /* html */ [
+//     '<span>Show more</span>',
+//     '<span class="list__remaining"> (${matches.length - [page * BOOKS_PER_PAGE] > 0 ? matches.length - [page * BOOKS_PER_PAGE] : 0})</span>',
+// ]
 
-data-search-cancel.click() { data-search-overlay.open === false }
-data-settings-cancel.click() { querySelect(data-settings-overlay).open === false }
-data-settings-form.submit() { actions.settings.submit }
-data-list-close.click() { data-list-active.open === false }
+// data-search-cancel.click() { data-search-overlay.open === false }
+// data-settings-cancel.click() { querySelect(data-settings-overlay).open === false }
+// data-settings-form.submit() { actions.settings.submit }
+// data-list-close.click() { data-list-active.open === false }
+
+  //fixing the functions that change light and dark themes
+  const settingOverlay = document.querySelector('[data-header-settings]')
+  const themePopUp =document.querySelector('[data-settings-overlay]')
+  settingOverlay.addEventListener('click', ()=>{
+  themePopUp
+  })
+  const dataSettingsTheme = document.querySelector('[data-settings-theme]')
+  const saveButton = document.querySelector("body > dialog:nth-child(5) > div > div > button.overlay__button.overlay__button_primary")
+  saveButton.addEventListener('click', (event) =>{
+      event.preventDefault()
+    if (dataSettingsTheme.value === 'day') {
+      document.querySelector('body').style.setProperty('--color-dark', day.dark)
+      document.querySelector('body').style.setProperty('--color-light', day.light)
+    }
+    if (dataSettingsTheme.value === 'night') {
+      document.querySelector('body').style.setProperty('--color-dark', night.dark)
+      document.querySelector('body').style.setProperty('--color-light', night.light)
+      
+        }
+  })
+
 
 data-list-button.click() {
     document.querySelector([data-list-items]).appendChild(createPreviewsFragment(matches, page x BOOKS_PER_PAGE, {page + 1} x BOOKS_PER_PAGE]))
