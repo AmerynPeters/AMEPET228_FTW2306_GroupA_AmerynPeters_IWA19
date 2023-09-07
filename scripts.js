@@ -62,12 +62,12 @@ const numberOfPreviews = books.slice(beginPreview, endPreview);
   const booklist1 = document.querySelector('[data-list-items]')
   booklist1.appendChild(fragment)
   
-  // create a new option element for authors
+  // make authors element
 const allauthorsOption = document.createElement('option')
 allauthorsOption.value = 'any';
-allauthorsOption.textContent = 'All authors'; // use textContent instead of innerText
+allauthorsOption.textContent = 'All authors'; 
 const authorSelect = document.querySelector("[data-search-authors]");
-authorSelect.appendChild(allauthorsOption); // add the new option element to the select
+authorSelect.appendChild(allauthorsOption); 
 for (const authorId in authors) {
   const optionElement = document.createElement('option');
   optionElement.value = authorId;
@@ -91,20 +91,19 @@ for (const authorId in authors) {
 
 // data-search-genres.appendChild(genres)
 
-authors = document.createDocumentFragment()
-element = document.createElement('option')
-element.value = 'any'
-element.innerText = 'All Authors'
-authors.appendChild(element)
-
-for ([id, name];Object.entries(authors); id++) {
-    document.createElement('option')
-    element.value = value
-    element = text
-    authors.appendChild(element)
+// 
+//// make option genre
+const genreSelect = document.querySelector("[data-search-genres]");
+const allGenresOption = document.createElement('option');
+allGenresOption.value = 'any';
+allGenresOption.innerText = 'All Genres';
+genreSelect.appendChild(allGenresOption);
+for (const [genreId, genreName] of Object.entries(genres)) {
+  const optionElement = document.createElement('option');
+  optionElement.value = genreId;
+  optionElement.textContent = genreName;
+  genreSelect.appendChild(optionElement)
 }
-
-data-search-authors.appendChild(authors)
 
 data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'
 v = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches? 'night' | 'day'
