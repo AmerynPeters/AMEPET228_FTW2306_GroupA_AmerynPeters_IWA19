@@ -62,23 +62,34 @@ const numberOfPreviews = books.slice(beginPreview, endPreview);
   const booklist1 = document.querySelector('[data-list-items]')
   booklist1.appendChild(fragment)
   
-
-data-list-items.appendChild(docFragment)
-
-genres = document.createDocumentFragment()
-element = document.createElement('option')
-element.value = 'any'
-element = 'All Genres'
-genres.appendChild(element)
-
-for ([id, name]; Object.entries(genres); i++) {
-    document.createElement('option')
-    element.value = value
-    element.innerText = text
-    genres.appendChild(element)
+  // create a new option element for authors
+const allauthorsOption = document.createElement('option')
+allauthorsOption.value = 'any';
+allauthorsOption.textContent = 'All authors'; // use textContent instead of innerText
+const authorSelect = document.querySelector("[data-search-authors]");
+authorSelect.appendChild(allauthorsOption); // add the new option element to the select
+for (const authorId in authors) {
+  const optionElement = document.createElement('option');
+  optionElement.value = authorId;
+  optionElement.textContent = authors[authorId];
+  authorSelect.appendChild(optionElement);
 }
+// data-list-items.appendChild(docFragment)
 
-data-search-genres.appendChild(genres)
+// genres = document.createDocumentFragment()
+// element = document.createElement('option')
+// element.value = 'any'
+// element = 'All Genres'
+// genres.appendChild(element)
+
+// for ([id, name]; Object.entries(genres); i++) {
+//     document.createElement('option')
+//     element.value = value
+//     element.innerText = text
+//     genres.appendChild(element)
+// }
+
+// data-search-genres.appendChild(genres)
 
 authors = document.createDocumentFragment()
 element = document.createElement('option')
