@@ -203,6 +203,12 @@ for (const [genreId, genreName] of Object.entries(genres)) {
   }
   document.querySelector('[data-search-genres]').appendChild(genresFragment);
 
+  //show more button:
+  const showMoreButton = document.querySelector("[data-list-button]");
+  const numItemsToShow = Math.min(books.length - endIndex,)
+  const showMoreButtonText = `Show More <span style="opacity: 0.5">(${numItemsToShow})</span>`
+  showMoreButton.innerHTML = showMoreButtonText
+  showMoreButton.addEventListener('click', () => )
 //     for (book; booksList; i++) {
 //         titleMatch = filters.title.trim() = '' && book.title.toLowerCase().includes[filters.title.toLowerCase()]
 //         authorMatch = filters.author = 'any' || book.author === filters.author
