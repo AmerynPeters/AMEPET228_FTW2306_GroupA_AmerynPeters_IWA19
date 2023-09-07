@@ -57,10 +57,10 @@ const numberOfPreviews = books.slice(beginPreview, endPreview);
       <dt class='preview__title'>${books[i].title}<dt>
       <dt class='preview__author'> By ${authors[books[i].author]}</dt>
       </div>`
-      fragment.appendChild(preview)
+      createPreviewsFragment.appendChild(preview);
   }
   const booklist1 = document.querySelector('[data-list-items]')
-  booklist1.appendChild(fragment)
+  booklist1.appendChild(createPreviewsFragment);
   
   // make authors element
 const allauthorsOption = document.createElement('option')
@@ -174,20 +174,20 @@ for (const [genreId, genreName] of Object.entries(genres)) {
   })
 
  // make search fxn to store more genres and authors to choose from
-  const authorFragment = document.createDocumentFragment();
-  let element = document.createElement('option');
-  element.value = 'any';
-  element.innerText = 'All Authors';
-  authorFragment.appendChild(element);
+  const authorsFragment = document.createDocumentFragment();
+  let element1 = document.createElement('option');
+  element1.value = 'any';
+  element1.innerText = 'All Authors';
+  authorsFragment.appendChild(element1);
   for (let [id, name] of Object.entries(authors)) {
-    const element = document.createElement('option');
+    const element1 = document.createElement('option');
     const value = id;
     const text = name;
-    element.value = value;
-    element.innerText = text;
-    authorFragment.appendChild(element);
-  }
-  document.querySelector('[data-search-authors]').appendChild(authorFragment);
+    element1.value = value;
+    element1.innerText = text;
+    authorsFragment.appendChild(element1);
+  };
+  document.querySelector('[data-search-authors]').appendChild(authorsFragment);
   const genresFragment = document.createDocumentFragment();
   let element2 = document.createElement('option');
   element2.value = 'any';
@@ -200,24 +200,74 @@ for (const [genreId, genreName] of Object.entries(genres)) {
     element.value = value;
     element.innerText = text;
     genresFragment.appendChild(element);
-  }
+  };
   document.querySelector('[data-search-genres]').appendChild(genresFragment);
 
-  //show more button:
+  //making the show more button:
   const showMoreButton = document.querySelector("[data-list-button]");
-  const numItemsToShow = Math.min(books.length - endIndex,)
-  const showMoreButtonText = `Show More <span style="opacity: 0.5">(${numItemsToShow})</span>`
+  const numberOfBooks = Math.min(books.length - endPreview,)
+  const showMoreButtonText = `Show More <span style="opacity: 0.5">(${numberOfBooks})</span>`
   showMoreButton.innerHTML = showMoreButtonText
-  showMoreButton.addEventListener('click', () => )
 
- //reassigned the vars
- beginPreview += 36;
- endPreview += 36;
- const startIndex1 = beginPreview
- const endIndex1 = endPreview
+  showMoreButton.addEventListener("click", () => {
+      //reassigned the vars
+      beginPreview += 36;
+      endPreview += 36;
+      const startIndex = beginPreview;
+      const endIndex = endPreview;
 
+      // Use slice method to extract a subset of the array based on the updated vars
+      const pull = books.slice(startIndex, endIndex);
+
+      // Loop  books and create a preview element for each one
+      for (const { author, image, title, id, description, published } of pull) {
+          //makes preview element and set its class and dataset attributes
+          const preview = document.createElement("dl");
+          preview.className = "preview";
+          preview.dataset.id = id;
+          preview.dataset.title = title;
+          preview.dataset.image = image;
+          preview.dataset.subtitle = `${authors[author]} (${new Date(
+              published
+          ).getFullYear()})`;
+          preview.dataset.description = description;
+
+          // Sets the innerHTML of the preview element to display images, titles, and authors
+          preview.innerHTML = `
+            <div>
+            <image class='preview__image' src="${image}" alt="book pic"}/>
+            </div>
+            <div class='preview__info'>
+            <dt class='preview__title'>${title}<dt>
+            <dt class='preview__author'> By ${authors[author]}</dt>
+            </div>`;
+
+          // Appends the preview element to the fragment
+          createPreviewsFragment.appendChild(preview);
+      };
+
+      // Gets the list of books and attaches it to the previous list so that the next 36 books show up when user clicks "show more" 
+      const booklist1 = document.querySelector("[data-list-items]");
+      booklist1.appendChild(createPreviewsFragment);
+
+      // Updates the text of the button to display how many more items will be displayed
+      const numberOfBooks = Math.min(books.length - endIndex);
+      const showMoreButtonText = `Show More <span style="opacity: 0.5">(${numberOfBooks})`;
+      showMoreButton.innerHTML = showMoreButtonText;
+  });
+
+  //Settings button
+  const settingsButton = document.querySelector("[data-header-settings]");
+  settingsButton.addEventListener("click", (event) => {
+      document.querySelector("[data-settings-overlay]").style.display = "block";
+  });
+
+  //Cancel button
+  const cancelButton = document.querySelector("[data-settings-cancel]");
+  cancelButton.addEventListener("click", (event) => {
+      document.querySelector("[data-settings-overlay]").style.display = "none";
+  });
   
-
 //     for (book; booksList; i++) {
 //         titleMatch = filters.title.trim() = '' && book.title.toLowerCase().includes[filters.title.toLowerCase()]
 //         authorMatch = filters.author = 'any' || book.author === filters.author
