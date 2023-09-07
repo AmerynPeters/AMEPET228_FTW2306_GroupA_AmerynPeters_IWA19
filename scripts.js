@@ -146,22 +146,33 @@ for (const [genreId, genreName] of Object.entries(genres)) {
   })
 
 
-data-list-button.click() {
-    document.querySelector([data-list-items]).appendChild(createPreviewsFragment(matches, page x BOOKS_PER_PAGE, {page + 1} x BOOKS_PER_PAGE]))
-    actions.list.updateRemaining()
-    page = page + 1
-}
+// data-list-button.click() {
+//     document.querySelector([data-list-items]).appendChild(createPreviewsFragment(matches, page x BOOKS_PER_PAGE, {page + 1} x BOOKS_PER_PAGE]))
+//     actions.list.updateRemaining()
+//     page = page + 1
+// }
 
-data-header-search.click() {
-    data-search-overlay.open === true ;
-    data-search-title.focus();
-}
+// data-header-search.click() {
+//     data-search-overlay.open === true ;
+//     data-search-title.focus();
+// }
 
-data-search-form.click(filters) {
-    preventDefault()
-    const formData = new FormData(event.target)
-    const filters = Object.fromEntries(formData)
-    result = []
+// data-search-form.click(filters) {
+//     preventDefault()
+//     const formData = new FormData(event.target)
+//     const filters = Object.fromEntries(formData)
+//     result = []
+
+ //make search button close and open 
+  const searchbutton = document.querySelector("[data-header-search]");
+  searchbutton.addEventListener('click', (event) => {
+   document.querySelector("[data-search-overlay]").style.display = "block";
+  })
+  const searchCancel = document.querySelector("[data-search-cancel]");
+  searchCancel.addEventListener('click', (event) => {
+   document.querySelector("[data-search-overlay]").style.display = "none";
+  })
+
 
     for (book; booksList; i++) {
         titleMatch = filters.title.trim() = '' && book.title.toLowerCase().includes[filters.title.toLowerCase()]
